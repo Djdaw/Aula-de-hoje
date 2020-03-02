@@ -1,0 +1,25 @@
+en
+conf t
+enable secret class
+ip domain-name cisco.com
+hostname S1
+banner motd "warning"
+crypto key generate rsa general-key modulus 1024
+ip ssh version 2
+username admin password ccna
+line vty 0 15
+login local
+transport input ssh
+line console 0
+password cisco
+login
+int range f0/1-f0/24
+shut
+int range g0/1,g0/2
+shut
+int range f0/1,f0/2
+switchport mode access
+switchport port-security
+switchport port-security max 2
+switchport port-security mac-address sticky
+no shut
